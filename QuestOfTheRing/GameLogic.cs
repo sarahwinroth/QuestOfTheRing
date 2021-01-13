@@ -26,9 +26,9 @@ namespace QuestOfTheRing
             string playerName = Console.ReadLine();
             player = new Player(playerName);
             Console.Clear();
-            Console.WriteLine($"Oh fearless {playerName}!");
+            Console.WriteLine($"Oh fearless {player.Name}!");
             Console.WriteLine("The Ring has been found once again in Hobbiton, Frodo has failed to destroy it in the fires of Mount Doom");
-            Console.WriteLine($"The Quest to destroy the Ring once again has been assigned to you {playerName}");
+            Console.WriteLine($"The Quest to destroy the Ring once again has been assigned to you {player.Name}");
             Console.WriteLine("Sauron has felt the Rings presence in Middle-Earth and darkness has fallen upon all creatures");
             Console.WriteLine("The Ring is now in your possession, you must finish the Quest, take the path to Mordor and destroy \nthe Ring in the fires of Mount Doom once and for all");
             player.HasRing = true;
@@ -37,7 +37,6 @@ namespace QuestOfTheRing
             Console.WriteLine("[PLAY]");
 
             Console.ReadLine();
-            //AddCreatures();
             Menu();
         }
         public void Menu()
@@ -75,7 +74,7 @@ namespace QuestOfTheRing
                             break;
                         case 4:
                             Console.WriteLine("Oh, Leaving so soon?");
-                            Console.WriteLine("The Woods will miss you <3");
+                            Console.WriteLine("You are leaving Middle-Earth in great danger..");
                             keepPlaying = false;
                             break;
                         default:
@@ -84,7 +83,7 @@ namespace QuestOfTheRing
                     }
                 }
             }
-            catch { Console.WriteLine("Wrong input, please try again!"); Console.ReadLine(); Menu(); }// Kan man göra så här??
+            catch { Console.WriteLine("Wrong input, please try again!"); Console.ReadLine(); Menu(); }
         }
 
         public void GoOnQuest()
@@ -99,7 +98,6 @@ namespace QuestOfTheRing
             if (rand == 1)
             {
                 Console.WriteLine("Be patient, you are walking on your path to Mordor..");
-                Console.WriteLine("[Press enter to continue]");
                 Console.ReadLine();
                 Menu();
             }
@@ -118,10 +116,10 @@ namespace QuestOfTheRing
                 Console.Clear();
                 var attackDamage = creature.Strength - player.Endurance;
                 Console.Write($"The {creature.Name} attacked you, dealing {attackDamage} damage");            
-                player.Hp -= creature.Strength;
+                creature.Attack(player);
                 Console.ReadLine();
                 Console.Write($"You attacked the {creature.Name}, dealing {player.Strength} damage");
-                creature.Hp -= player.Strength;
+                player.Attack(creature);
                 Console.ReadLine();
 
                 if (player.Hp <= 0)
@@ -172,8 +170,9 @@ namespace QuestOfTheRing
                     }
 
                     Console.WriteLine($"You have defeated the {creature.Name}! You gained {creature.Exp} experience points and {creature.Gold} gold");
-                    player.Exp += creature.Exp;
-                    player.Gold += creature.Gold;
+                    creature.GiveExp(player);
+                    player.TakeGold(creature);
+
                     if(player.Exp >= 200)
                     {
                         player.Level += 1;
@@ -190,7 +189,6 @@ namespace QuestOfTheRing
                 Console.ReadLine();
             }
         }      
-
         public SpecificCreature GetCreature()
         {
             if(player.Level == 1)
@@ -223,8 +221,7 @@ namespace QuestOfTheRing
             try
             {
                 while (keepShopping)
-                {
-                    Shop shop = new Shop();
+                {                  
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("[SHOP]");
@@ -237,59 +234,17 @@ namespace QuestOfTheRing
                     Console.WriteLine("4. Exit shop");
                     Console.Write("> ");
                     int input = Convert.ToInt32(Console.ReadLine());
-
+                    Shop shop = new Shop();
                     switch (input)
                     {
                         case 1:
-                            if (player.HasGold())
-                            {
-                                player.Strength += shop.StrengthPotion;
-                                player.Pay();
-                                Console.WriteLine($"You have now increased your strength with with {shop.StrengthPotion}");
-                                Console.WriteLine($"Your total strength is now {player.Strength}");
-                                Console.ReadLine();
-                                Shop();
-                            }
-                            else
-                            {
-                                Console.WriteLine("You dont have enough gold to make a purchase");
-                                Console.ReadLine();
-                                Shop();
-                            }
+                            shop.BuyStrengthPotion(player);                            
                             break;
                         case 2:
-                            if (player.HasGold())
-                            {
-                                player.Endurance += shop.DefensePotion;
-                                player.Pay();
-                                Console.WriteLine($"You have now increased your endurance with {shop.DefensePotion}");
-                                Console.WriteLine($"Your total endurance is now {player.Endurance}");
-                                Console.ReadLine();
-                                Shop();
-                            }
-                            else
-                            {
-                                Console.WriteLine("You dont have enough gold to make a purchase");
-                                Console.ReadLine();
-                                Shop();
-                            }
+                            shop.BuyDefensePotion(player);
                             break;
                         case 3:
-                            if (player.HasGold())
-                            {
-                                player.Hp += shop.HealthPotion;
-                                player.Pay();
-                                Console.WriteLine($"You have now increased your hp with {shop.HealthPotion}");
-                                Console.WriteLine($"Your total hp is now {player.Hp}");
-                                Console.ReadLine();
-                                Shop();
-                            }
-                            else
-                            {
-                                Console.WriteLine("You dont have enough gold to make a purchase");
-                                Console.ReadLine();
-                                Shop();
-                            }
+                            shop.BuyHealingPotion(player);
                             break;
                         case 4:
                             keepShopping = false;

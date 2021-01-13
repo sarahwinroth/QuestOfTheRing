@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QuestOfTheRing
 {
-    class Player
+    class Player : IAttack
     {
         private string name;
         private int level = 1;
@@ -17,6 +15,7 @@ namespace QuestOfTheRing
 
         public Player()
         { }
+
         public Player(string name)
         {
             this.name = name;
@@ -43,6 +42,17 @@ namespace QuestOfTheRing
             Console.WriteLine($"* Endurance: {endurance}");
             Console.WriteLine("******************");
         }
+
+        public void Attack(SpecificCreature creature)
+        {
+            creature.Hp -= Strength;
+        }
+
+        public void TakeGold(SpecificCreature creature)
+        {
+            Gold += creature.Gold;
+        }
+
         public bool HasGold()
         {
             if (gold == 100 || gold > 100)
@@ -54,6 +64,7 @@ namespace QuestOfTheRing
                 return false;
             }
         }
+
         public void Pay()
         {
             Gold -= 100;
