@@ -2,7 +2,7 @@
 
 namespace QuestOfTheRing
 {
-    class Player : IAttack
+    class Player : IAttack, ICharacter
     {
         private string name;
         private int level = 1;
@@ -12,9 +12,6 @@ namespace QuestOfTheRing
         private int endurance = 0;
         private int gold = 0;
         private bool hasRing;
-
-        public Player()
-        { }
 
         public Player(string name)
         {
@@ -30,7 +27,7 @@ namespace QuestOfTheRing
         public int Gold { get => gold; set => gold = value; }
         public bool HasRing { get => hasRing; set => hasRing = value; }
 
-        public void PlayerDetails()
+        public void Details()
         {
             Console.WriteLine("******************");
             Console.WriteLine($"* Name: {name}");

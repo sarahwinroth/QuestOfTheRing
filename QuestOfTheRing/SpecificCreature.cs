@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuestOfTheRing
 {
-    class SpecificCreature : Creature, IAttack
+    class SpecificCreature : Creature, IAttack, ICharacter
     {
         private int level;
         private string place;
@@ -34,6 +34,16 @@ namespace QuestOfTheRing
         public int Strength { get => strength; set => strength = value; }
         public string Article { get => article; set => article = value; }
 
+        public void Details()
+        {
+            Console.WriteLine("******************");
+            Console.WriteLine($"* Creature: {Name}");
+            Console.WriteLine($"* Strength: {strength}");
+            Console.WriteLine($"* Hp: {hp}");
+            Console.WriteLine($"* Exp: {exp}");
+            Console.WriteLine($"* Gold: {gold}");
+            Console.WriteLine("******************");
+        }
         public void Attack(Player player)
         {
             player.Hp -= Strength;
@@ -42,5 +52,7 @@ namespace QuestOfTheRing
         {
             player.Exp += Exp;
         }
+
+
     }
 }

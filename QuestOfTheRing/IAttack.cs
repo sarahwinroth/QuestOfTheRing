@@ -6,9 +6,6 @@ namespace QuestOfTheRing
 {
     interface IAttack
     {
-        void Attack(Object obj)
-        {
-
-        }
+        void Attack(Object obj) { }
     }
 }

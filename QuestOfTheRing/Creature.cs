@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuestOfTheRing
 {
-    abstract class Creature
+    class Creature
     {
         private string name;
         public string Name { get => name; set => name = value; }

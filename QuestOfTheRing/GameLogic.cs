@@ -7,7 +7,6 @@ namespace QuestOfTheRing
     class GameLogic
     {
         public Player player;
-        public static List<SpecificCreature> ListOfCreatures = new List<SpecificCreature>();
         public void Start()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -55,8 +54,9 @@ namespace QuestOfTheRing
                     Console.WriteLine("\n[MENU]");
                     Console.WriteLine("1. Go on Quest");
                     Console.WriteLine("2. Player details");
-                    Console.WriteLine("3. Go to Shop");
-                    Console.WriteLine("4. Exit game");
+                    Console.WriteLine($"3. Details of who wanders in {creature.Place}");
+                    Console.WriteLine("4. Go to Shop");
+                    Console.WriteLine("5. Exit game");
                     Console.Write("> ");
                     int input = Convert.ToInt32(Console.ReadLine());
 
@@ -66,13 +66,17 @@ namespace QuestOfTheRing
                             GoOnQuest();
                             break;
                         case 2:
-                            player.PlayerDetails();
+                            player.Details();
                             Console.ReadLine();
                             break;
                         case 3:
-                            Shop();
+                            creature.Details();
+                            Console.ReadLine();
                             break;
                         case 4:
+                            Shop();
+                            break;
+                        case 5:
                             Console.WriteLine("Oh, Leaving so soon?");
                             Console.WriteLine("You are leaving Middle-Earth in great danger..");
                             keepPlaying = false;
