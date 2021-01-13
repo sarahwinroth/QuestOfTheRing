@@ -204,17 +204,17 @@ namespace QuestOfTheRing
             else if (player.Level == 4)
             { SpecificCreature creature = new SpecificCreature("a ", "Troll", 4, "Trollshaws", 80, 50, 40, 8); return creature; }
             else if (player.Level == 5)
-            { SpecificCreature creature = new SpecificCreature("an ", "Elf", 5, "Rivendell", 100, 50, 40, 8); return creature; }
+            { SpecificCreature creature = new SpecificCreature("an ", "Elf", 5, "Rivendell", 100, 50, 50, 10); return creature; }
             else if (player.Level == 6)
-            { SpecificCreature creature = new SpecificCreature("an ", "Ogre", 6, "Nan Amlug East", 100, 50, 50, 10); return creature; }
+            { SpecificCreature creature = new SpecificCreature("an ", "Ogre", 6, "Nan Amlug East", 120, 40, 50, 12); return creature; }
             else if (player.Level == 7)
-            { SpecificCreature creature = new SpecificCreature("a ", "Wizard", 7, "Isengard", 120, 50, 50, 15); return creature; }
+            { SpecificCreature creature = new SpecificCreature("a ", "Wizard", 7, "Isengard", 150, 40, 50, 15); return creature; }
             else if (player.Level == 8)
-            { SpecificCreature creature = new SpecificCreature("a ", "Nazgul", 8, "closer to Mordor", 120, 50, 50, 15); return creature; }
+            { SpecificCreature creature = new SpecificCreature("a ", "Nazgul", 8, "Minas Morgul", 150, 35, 60, 20); return creature; }
             else if (player.Level == 9)
-            { SpecificCreature creature = new SpecificCreature("an ", "Orc", 9, "the gates of Mordor", 150, 50, 50, 15); return creature; }
+            { SpecificCreature creature = new SpecificCreature("an ", "Orc", 9, "the gates of Mordor", 200, 35, 80, 25); return creature; }
             else if (player.Level == 10)
-            { SpecificCreature creature = new SpecificCreature("", "Azog the Defiler", 10, "the heart of Mordor", 200, 0, 0, 20); return creature; }
+            { SpecificCreature creature = new SpecificCreature("", "Azog the Defiler", 10, "the heart of Mordor", 200, 0, 0, 30); return creature; }
             else
             { Console.WriteLine("The players level was not found"); }
             return null;
@@ -234,7 +234,7 @@ namespace QuestOfTheRing
                     Console.WriteLine("********************************************");
                     Console.WriteLine("1. Strength Potion (+ 5 Strength) - 100 gold");
                     Console.WriteLine("2. Defense Potion (+ 2 toughness) - 100 gold");
-                    Console.WriteLine("3. Healing Potion (+ 100 health) - 100 gold");
+                    Console.WriteLine("3. Healing Potion (+ 100 health) - 50 gold");
                     Console.WriteLine("4. Exit shop");
                     Console.Write("> ");
                     int input = Convert.ToInt32(Console.ReadLine());

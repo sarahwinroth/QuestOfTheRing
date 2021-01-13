@@ -9,18 +9,20 @@ namespace QuestOfTheRing
         private int strengthPotion = 5;
         private int defensePotion = 2;
         private int healingPotion = 100;
+        private bool isHealing = false;
         public Shop()
         { }
         public int StrengthPotion { get => strengthPotion; set => strengthPotion = value; }
         public int DefensePotion { get => defensePotion; set => defensePotion = value; }
         public int HealingPotion { get => healingPotion; set => healingPotion = value; }
+        public bool IsHealing { get => isHealing; set => isHealing = value; }
 
         public void BuyStrengthPotion(Player player)
         {
-            if (player.HasGold())
+            if (player.HasGold(isHealing))
             {
                 player.Strength += StrengthPotion;
-                player.Pay();
+                player.Pay(isHealing);
                 Console.WriteLine($"You have now increased your strength with with {StrengthPotion}");
                 Console.WriteLine($"Your total strength is now {player.Strength}");
                 Console.ReadLine();
@@ -33,10 +35,10 @@ namespace QuestOfTheRing
         }
         public void BuyDefensePotion(Player player)
         {
-            if (player.HasGold())
+            if (player.HasGold(isHealing))
             {
                 player.Endurance += DefensePotion;
-                player.Pay();
+                player.Pay(isHealing);
                 Console.WriteLine($"You have now increased your endurance with {DefensePotion}");
                 Console.WriteLine($"Your total endurance is now {player.Endurance}");
                 Console.ReadLine();
@@ -49,10 +51,12 @@ namespace QuestOfTheRing
         }
         public void BuyHealingPotion(Player player)
         {
-            if (player.HasGold())
+            isHealing = true;
+
+            if (player.HasGold(isHealing))
             {
                 player.Hp += HealingPotion;
-                player.Pay();
+                player.Pay(isHealing);
                 Console.WriteLine($"You have now increased your hp with {HealingPotion}");
                 Console.WriteLine($"Your total hp is now {player.Hp}");
                 Console.ReadLine();

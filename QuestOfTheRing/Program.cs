@@ -4,7 +4,7 @@ namespace QuestOfTheRing
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             GameLogic Game = new GameLogic();
             Game.Start();

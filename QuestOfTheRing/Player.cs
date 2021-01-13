@@ -2,7 +2,7 @@
 
 namespace QuestOfTheRing
 {
-    class Player : IAttack, ICharacter
+    internal class Player : IAttack, ICharacter
     {
         private string name;
         private int level = 1;
@@ -50,9 +50,13 @@ namespace QuestOfTheRing
             Gold += creature.Gold;
         }
 
-        public bool HasGold()
+        public bool HasGold(bool isHealing)
         {
             if (gold == 100 || gold > 100)
+            {
+                return true;
+            }
+            else if (gold == 50 || gold > 50 && isHealing)
             {
                 return true;
             }
@@ -62,9 +66,10 @@ namespace QuestOfTheRing
             }
         }
 
-        public void Pay()
+        public void Pay(bool isHealing)
         {
-            Gold -= 100;
+            if (isHealing) { Gold -= 50; }
+            else { Gold -= 100; }
         }
     }
 }
