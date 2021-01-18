@@ -57,8 +57,7 @@ namespace QuestOfTheRing
             {
                 player.Hp += HealingPotion;
                 player.Pay(isHealing);
-                Console.WriteLine($"You have now increased your hp with {HealingPotion}");
-                Console.WriteLine($"Your total hp is now {player.Hp}");
+                Console.WriteLine($"You have increased your hp with {HealingPotion}");
                 Console.ReadLine();
             }
             else

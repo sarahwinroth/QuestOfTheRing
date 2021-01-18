@@ -1,62 +1,61 @@
-﻿using System;
+﻿using QuestOfTheRing.Creatures;
+using QuestOfTheRing.Interfaces;
+using System;
 
 namespace QuestOfTheRing
 {
-    internal class Player : IAttack, ICharacter
+    internal class Player : IPlayer
     {
-        private string name;
-        private int level = 1;
+        private readonly string name;
         private int hp = 200;
         private int exp = 0;
-        private int strength = 5;
+        private int maxExp = 200;
+        private int strength = RandomHelper.GetRandomNum(4, 10);
         private int endurance = 0;
         private int gold = 0;
-        private bool hasRing;
+        private bool hasRing = false;
+
+        public string Name => name;
+        public int Hp { get => hp; set => hp = value; }
+        public int Exp { get => exp; set => exp = value; }
+        public int MaxExp { get => exp; set => exp = value; }
+        public int Strength { get => strength; set => strength = value; }
+        public int Endurance { get => endurance; set => endurance = value; }
+        public int Gold { get => gold; set => gold = value; }
+        public bool HasRing { get => hasRing; set => hasRing = value; }
 
         public Player(string name)
         {
             this.name = name;
         }
 
-        public string Name { get => name; set => name = value; }
-        public int Level { get => level; set => level = value; }
-        public int Hp { get => hp; set => hp = value; }
-        public int Exp { get => exp; set => exp = value; }
-        public int Strength { get => strength; set => strength = value; }
-        public int Endurance { get => endurance; set => endurance = value; }
-        public int Gold { get => gold; set => gold = value; }
-        public bool HasRing { get => hasRing; set => hasRing = value; }
-
-        public void Details()
+        public void Details(GameLevel gameLevel)
         {
-            Console.WriteLine("******************");
-            Console.WriteLine($"* Name: {name}");
-            Console.WriteLine($"* Level: {level}");
-            Console.WriteLine($"* Hp: {hp}");
-            Console.WriteLine($"* Exp: {exp}/200");
-            Console.WriteLine($"* Gold: {gold}");
-            Console.WriteLine($"* Strength: {strength}");
-            Console.WriteLine($"* Endurance: {endurance}");
-            Console.WriteLine("******************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\n[PLAYER DETAILS]");
+            Console.WriteLine("*****************");
+            Console.WriteLine($"* Name: {Name}");
+            Console.WriteLine($"* Level: {gameLevel.Level}");
+            Console.WriteLine($"* Hp: {Hp}");
+            Console.WriteLine($"* Exp: {Exp}/{MaxExp}");
+            Console.WriteLine($"* Gold: {Gold}");
+            Console.WriteLine($"* Strength: {Strength}");
+            Console.WriteLine($"* Endurance: {Endurance}");
+            Console.WriteLine("*****************");
         }
 
-        public void Attack(SpecificCreature creature)
+        public void Attack(Creature creature)
         {
+            Console.Write($"You attacked the {creature.Name}, dealing {Strength} damage");          
             creature.Hp -= Strength;
         }
-
-        public void TakeGold(SpecificCreature creature)
+        public int TakeDamage()
         {
-            Gold += creature.Gold;
+            return Endurance;
         }
-
-        public bool HasGold(bool isHealing)
+        public bool IsDead()
         {
-            if (gold == 100 || gold > 100)
-            {
-                return true;
-            }
-            else if (gold == 50 || gold > 50 && isHealing)
+            if (Hp <= 0)
             {
                 return true;
             }
@@ -65,11 +64,45 @@ namespace QuestOfTheRing
                 return false;
             }
         }
-
+        public void TakeGold(Creature creature)
+        {
+            Gold += creature.Gold;
+        }
+        public void LevelUp(GameLevel gameLevel)
+        {
+            if (Exp >= maxExp)
+            {
+                gameLevel.Level += 1;
+                Console.WriteLine($"\nYou've reached level {gameLevel.Level}");
+                Exp = 0;
+                Hp += 200;                             
+            }
+        }
+        public void ShowCurrentDetails()
+        {
+            Console.WriteLine($"You have now {Exp} exp, {Hp} hp and {Gold} gold");
+        }
+        public bool HasGold(bool isHealing)
+        {
+            if (Gold == 100 || Gold > 100)
+            {
+                return true;
+            }
+            else if (Gold == 50 || Gold > 50 && isHealing)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void Pay(bool isHealing)
         {
             if (isHealing) { Gold -= 50; }
             else { Gold -= 100; }
         }
+        public void GodMode()
+        { }
     }
 }
