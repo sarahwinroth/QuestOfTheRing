@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace QuestOfTheRing
+﻿namespace QuestOfTheRing
 {
     class Program
     {
-        static void Main()
+        private static void Main()
         {
             GameLogic Game = new GameLogic();
             Game.Start();

@@ -1,11 +1,10 @@
 ﻿using QuestOfTheRing.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace QuestOfTheRing.Creatures
 {
-    abstract class Creature : ICreature
+    internal abstract class Creature : ICreature
     {
         private string article;
         private string name;
@@ -25,62 +24,87 @@ namespace QuestOfTheRing.Creatures
         public int Strength { get => strength; set => strength = value; }
         public bool IsStrong { get => isStrong; set => isStrong = value; }
 
-        public static ICreature GetRandomCreature()
+        public static Creature GetRandomCreature(GameLevel gameLevel)
         {
-            int i = RandomHelper.GetRandomNum(listOfCreatures.Count);
-            return listOfCreatures[i];
+            bool getCreature = true;
+            while (getCreature)
+            {
+                int i = RandomHelper.GetRandomNum(listOfCreatures.Count);
+
+                Creature creature = (Creature)listOfCreatures[i];
+                if (gameLevel.Level <= 5 && !creature.IsStrong)
+                {
+                    return creature;
+                }
+                else if (gameLevel.Level >= 6 && creature.IsStrong)
+                {
+                    return creature;
+                }
+            }
+            return null;
         }
+
         public void LevelUpgrade(GameLevel gameLevel)
-        {   
-            switch(gameLevel.Level)
+        {
+            switch (gameLevel.Level)
             {
                 case 2:
-                    Strength += 4;
-                    Hp += 10;
+                    Strength += 6;
+                    Hp += 20;
                     Exp -= 10;
                     break;
+
                 case 3:
-                    Strength += 8;
-                    Hp += 30;
+                    Strength += 20;
+                    Hp += 50;
                     Exp -= 20;
                     break;
+
                 case 4:
-                    Strength += 10;
-                    Hp += 40;
+                    Strength += 30;
+                    Hp += 80;
                     Exp -= 30;
                     break;
+
                 case 5:
-                    Strength += 12;
-                    Hp += 50;
+                    Strength += 40;
+                    Hp += 100;
                     Exp -= 40;
                     break;
+
                 case 6:
-                    Strength += 15;
-                    Hp += 60;
+                    Strength += 50;
+                    Hp += 120;
                     Exp -= 50;
                     break;
+
                 case 7:
-                    Strength += 20;
-                    Hp += 70;
+                    Strength += 60;
+                    Hp += 150;
                     Exp -= 60;
                     break;
+
                 case 8:
-                    Strength += 25;
-                    Hp += 80;
-                    Exp -= 65;
+                    Strength += 80;
+                    Hp += 200;
+                    Exp -= 60;
                     break;
+
                 case 9:
-                    Strength += 30;
-                    Hp += 90;
-                    Exp -= 70;
+                    Strength += 100;
+                    Hp += 250;
+                    Exp -= 60;
                     break;
+
                 case 10:
-                    Strength += 40;
+                    Strength += 150;
                     break;
+
                 default:
                     break;
             }
         }
+
         public void Attack(Player player)
         {
             var attackDamage = strength - player.Endurance;
@@ -89,26 +113,48 @@ namespace QuestOfTheRing.Creatures
             Console.Write($"The {name} attacked you, dealing {attackDamage} damage");
             player.Hp -= attackDamage;
         }
-        public void TakeDamage() // Hur behöver jag detta?
-        { }
+
         public bool IsDead(Creature creature)
         {
-            if(creature.hp <= 0)
-            { 
-                return true; 
+            if (creature.hp <= 0)
+            {
+                return true;
             }
             else
             {
                 return false;
             }
         }
+
+        public Item DropItem()
+        {
+            Item item = Item.GetRandomItem();
+            return item;
+        }
+
         public void IsDefeated(Creature creature)
         {
-            Console.WriteLine($"You have defeated the {creature.Name}! You gained {creature.Exp} experience points and {creature.Gold} gold");
+            Console.WriteLine($"You have defeated the {creature.Name}!");
+            Console.WriteLine($"You've recieved {creature.Exp} exp and {creature.Gold} gold");
         }
+
         public void GiveExp(Player player)
         {
             player.Exp += exp;
+        }
+
+        public static void AddCreatures()
+        {
+            listOfCreatures.Clear();
+            listOfCreatures.Add(new Hobbit());
+            listOfCreatures.Add(new Dwarf());
+            listOfCreatures.Add(new Elf());
+            listOfCreatures.Add(new Ent());
+            listOfCreatures.Add(new Troll());
+            listOfCreatures.Add(new Ogre());
+            listOfCreatures.Add(new Wizard());
+            listOfCreatures.Add(new Nazgul());
+            listOfCreatures.Add(new Orc());
         }
     }
 }

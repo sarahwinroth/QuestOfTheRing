@@ -1,11 +1,8 @@
-﻿using QuestOfTheRing.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace QuestOfTheRing
 {
-    class RandomHelper
+    internal class RandomHelper
     {
         public static int GetRandomNum(int num)
         {
@@ -13,6 +10,7 @@ namespace QuestOfTheRing
             int randomNum = random.Next(num);
             return randomNum;
         }
+
         public static int GetRandomNum(int num1, int num2)
         {
             Random random = new Random();

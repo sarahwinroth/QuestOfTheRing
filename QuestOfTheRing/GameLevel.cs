@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace QuestOfTheRing
 {
-    class GameLevel
+    internal class GameLevel
     {
         private int level = 1;
         private string place;
@@ -40,23 +38,24 @@ namespace QuestOfTheRing
             listOfPlaces.Add("Minas Morgul");
             listOfPlaces.Add("The Black Gate");
             listOfPlaces.Add("Mount Doom, Mordor");
-
         }
+
         public void GetLevelInfo()
         {
             Place = listOfPlaces[level - 1];
             LevelNote = listOfNotes[level - 1];
         }
+
         public bool IfLastLevel()
         {
-            if(level == 10)
-            { 
-                return true; 
+            if (level == 10)
+            {
+                return true;
             }
             else
-            { 
-                return false; 
-            }         
+            {
+                return false;
+            }
         }
     }
 }

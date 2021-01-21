@@ -1,20 +1,16 @@
-﻿using QuestOfTheRing.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QuestOfTheRing.Creatures
+﻿namespace QuestOfTheRing.Creatures
 {
-    class Hobbit : Creature
-    { 
+    internal class Hobbit : Creature
+    {
         public Hobbit()
         {
             this.Article = "a ";
             this.Name = "Hobbit";
-            this.Hp = 25;
+            this.Hp = 35;
             this.Exp = 100;
-            this.Gold = 20;
+            this.Gold = 30;
             this.Strength = RandomHelper.GetRandomNum(2, 7);
+            this.IsStrong = false;
         }
     }
 }

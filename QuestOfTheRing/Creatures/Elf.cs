@@ -1,6 +1,6 @@
 ﻿namespace QuestOfTheRing.Creatures
 {
-    class Elf : Creature
+    internal class Elf : Creature
     {
         public Elf()
         {
@@ -10,6 +10,7 @@
             this.Exp = 95;
             this.Gold = 50;
             this.Strength = RandomHelper.GetRandomNum(2, 9);
+            this.IsStrong = false;
         }
     }
 }

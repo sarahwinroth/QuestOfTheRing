@@ -13,7 +13,11 @@ namespace QuestOfTheRing
         int Strength { get; set; }
 
         void Details() { }
-
-
+        void Attack() { }
+        void IsDead() { }
+        void TakeGold() { }
+        void LevelUp() { }
+        void ShowCurrentDetails() { }
+        void CollectItem() { }
     }
 }

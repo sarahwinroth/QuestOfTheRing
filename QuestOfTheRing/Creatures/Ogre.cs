@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QuestOfTheRing.Creatures
+﻿namespace QuestOfTheRing.Creatures
 {
-    class Ogre : Creature
+    internal class Ogre : Creature
     {
         public Ogre()
         {
@@ -12,8 +8,9 @@ namespace QuestOfTheRing.Creatures
             this.Name = "Ogre";
             this.Hp = 30;
             this.Exp = 95;
-            this.Gold = 50;
+            this.Gold = 60;
             this.Strength = RandomHelper.GetRandomNum(2, 9);
+            this.IsStrong = false;
         }
     }
 }

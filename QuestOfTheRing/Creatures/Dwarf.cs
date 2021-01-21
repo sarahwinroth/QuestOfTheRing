@@ -1,11 +1,6 @@
-﻿using QuestOfTheRing.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QuestOfTheRing.Creatures
+﻿namespace QuestOfTheRing.Creatures
 {
-    class Dwarf : Creature
+    internal class Dwarf : Creature
     {
         public Dwarf()
         {
@@ -13,8 +8,9 @@ namespace QuestOfTheRing.Creatures
             this.Name = "Dwarf";
             this.Hp = 25;
             this.Exp = 100;
-            this.Gold = 30;
+            this.Gold = 50;
             this.Strength = RandomHelper.GetRandomNum(2, 7);
+            this.IsStrong = false;
         }
     }
 }
