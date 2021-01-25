@@ -39,13 +39,11 @@ namespace QuestOfTheRing
             listOfPlaces.Add("The Black Gate");
             listOfPlaces.Add("Mount Doom, Mordor");
         }
-
         public void GetLevelInfo()
         {
             Place = listOfPlaces[level - 1];
             LevelNote = listOfNotes[level - 1];
         }
-
         public bool IfLastLevel()
         {
             if (level == 10)

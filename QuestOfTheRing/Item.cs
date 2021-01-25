@@ -4,17 +4,15 @@ namespace QuestOfTheRing.Creatures
 {
     internal class Item
     {
-        private string name;
-        private int value;
+        private readonly string name;
+        private readonly int value;
 
         public static List<Item> ListOfItems = new List<Item>();
-
         public Item(string name, int value)
         {
             this.name = name;
             this.value = value;
         }
-
         public string Name { get => name; }
         public int Value { get => value; }
 
@@ -32,7 +30,6 @@ namespace QuestOfTheRing.Creatures
                 return null;
             }
         }
-
         public void RemoveItemFromList(Item item)
         {
             foreach (var element in ListOfItems)
@@ -44,7 +41,6 @@ namespace QuestOfTheRing.Creatures
                 }
             }
         }
-
         public static void AddItems()
         {
             ListOfItems.Clear();

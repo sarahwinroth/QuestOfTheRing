@@ -7,7 +7,6 @@ namespace QuestOfTheRing
     {
         public Player player;
         public GameLevel gameLevel;
-
         public void Start()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -75,22 +74,18 @@ namespace QuestOfTheRing
                         case 1:
                             GoOnQuest();
                             break;
-
                         case 2:
                             player.Details(gameLevel);
                             break;
-
                         case 3:
                             Shop shop = new Shop();
                             shop.Menu(player);
                             break;
-
                         case 4:
                             Console.WriteLine("Oh, Leaving so soon?");
                             Console.WriteLine("You are leaving Middle-Earth in great danger..");
                             keepPlaying = false;
                             break;
-
                         default:
                             Console.WriteLine("Wrong input in main menu, please try again!");
                             break;
@@ -107,13 +102,12 @@ namespace QuestOfTheRing
             Creature.AddCreatures();
 
             var creature = Creature.GetRandomCreature(gameLevel);
-            creature.LevelUpgrade(gameLevel);
             if (gameLevel.IfLastLevel())
             {
                 AzogTheDefiler lastCreature = new AzogTheDefiler();
                 creature = lastCreature;
             }
-
+            creature.LevelUpgrade(gameLevel);
             if (RandomHelper.GetRandomNum(10) == 1)
             {
                 Console.WriteLine("Be patient, you are walking on your path to Mordor..");

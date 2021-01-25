@@ -9,9 +9,6 @@ namespace QuestOfTheRing
         private int healingPotion = 100;
         private bool isHealing = false;
 
-        public Shop()
-        { }
-
         public int StrengthPotion { get => strengthPotion; set => strengthPotion = value; }
         public int DefensePotion { get => defensePotion; set => defensePotion = value; }
         public int HealingPotion { get => healingPotion; set => healingPotion = value; }
@@ -42,23 +39,18 @@ namespace QuestOfTheRing
                         case 1:
                             BuyStrengthPotion(player);
                             break;
-
                         case 2:
                             BuyDefensePotion(player);
                             break;
-
                         case 3:
                             BuyHealingPotion(player);
                             break;
-
                         case 4:
                             SellItem(player);
                             break;
-
                         case 5:
                             keepShopping = false;
                             break;
-
                         default:
                             Console.WriteLine("Wrong input, please try again!");
                             break;
@@ -67,7 +59,6 @@ namespace QuestOfTheRing
             }
             catch { Console.WriteLine("Wrong input, please try again!"); Console.ReadLine(); Menu(player); }
         }
-
         public void BuyStrengthPotion(Player player)
         {
             if (player.HasGold(isHealing))
@@ -84,7 +75,6 @@ namespace QuestOfTheRing
                 Console.ReadLine();
             }
         }
-
         public void BuyDefensePotion(Player player)
         {
             if (player.HasGold(isHealing))
@@ -101,7 +91,6 @@ namespace QuestOfTheRing
                 Console.ReadLine();
             }
         }
-
         public void BuyHealingPotion(Player player)
         {
             isHealing = true;
@@ -112,14 +101,15 @@ namespace QuestOfTheRing
                 player.Pay(isHealing);
                 Console.WriteLine($"You have increased your hp with {HealingPotion}");
                 Console.ReadLine();
+                isHealing = false;
             }
             else
             {
                 Console.WriteLine("You dont have enough gold to make a purchase");
                 Console.ReadLine();
+                isHealing = false;
             }
         }
-
         public void SellItem(Player player)
         {
             int count = 1;

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QuestOfTheRing.Interfaces
+﻿namespace QuestOfTheRing.Interfaces
 {
-    interface ICreature
+    internal interface ICreature
     {
         void GetRandomCreature() { }
-        void Attack(Player player) { }
-        void IsDead() { }
-        void GiveExp(Player player) { }
-        void DropItem() { }
-        void LevelUpgrade() { }
 
+        void Attack() { }
+
+        void IsDead() { }
+
+        void GiveExp() { }
+
+        void DropItem() { }
+
+        void LevelUpgrade() { }
     }
 }

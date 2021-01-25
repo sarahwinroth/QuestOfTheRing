@@ -10,6 +10,7 @@
             this.Exp = 0;
             this.Gold = 0;
             this.Strength = RandomHelper.GetRandomNum(40, 50);
+            this.IsStrong = true;
         }
     }
 }

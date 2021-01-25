@@ -30,7 +30,6 @@ namespace QuestOfTheRing
         {
             this.name = name;
         }
-
         public void Details(GameLevel gameLevel)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -45,13 +44,11 @@ namespace QuestOfTheRing
             Console.WriteLine("\n[ENTER]");
             Console.ReadLine();
         }
-
         public void Attack(Creature creature)
         {
             Console.Write($"You attacked the {creature.Name}, dealing {Strength} damage");
             creature.Hp -= Strength;
         }
-
         public bool IsDead()
         {
             if (Hp <= 0)
@@ -63,12 +60,10 @@ namespace QuestOfTheRing
                 return false;
             }
         }
-
         public void TakeGold(Creature creature)
         {
             Gold += creature.Gold;
         }
-
         public void LevelUp(GameLevel gameLevel)
         {
             if (Exp >= maxExp)
@@ -79,7 +74,6 @@ namespace QuestOfTheRing
                 Hp += 200;
             }
         }
-
         public void ShowCurrentDetails()
         {
             Console.WriteLine($"\n══ CURRENT STATUS ══");
@@ -89,14 +83,14 @@ namespace QuestOfTheRing
             Console.WriteLine("\n[ENTER]");
             Console.ReadLine();
         }
-
         public void CollectItem(Item item)
         {
             collectedItems.Add(item);
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"\nAn item is dropped, {item.Name} is now in your possession");
+            Console.ForegroundColor = ConsoleColor.White;
             item.RemoveItemFromList(item);
         }
-
         public bool HasGold(bool isHealing)
         {
             if (Gold == 100 || Gold > 100)
@@ -112,25 +106,22 @@ namespace QuestOfTheRing
                 return false;
             }
         }
-
         public void Pay(bool isHealing)
         {
             if (isHealing) { Gold -= 50; }
             else { Gold -= 100; }
         }
-
         public void SellCollectedItem(Item item)
         {
             collectedItems.Remove(item);
         }
-
         public void IfRobin()
         {
             if (Name == "Robin" || Name == "robin")
             {
                 Hp = 10000;
                 Gold = 1000;
-                Strength = 30;
+                Strength = 100;
                 Endurance = 10;
             }
         }

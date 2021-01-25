@@ -43,68 +43,57 @@ namespace QuestOfTheRing.Creatures
             }
             return null;
         }
-
         public void LevelUpgrade(GameLevel gameLevel)
         {
             switch (gameLevel.Level)
             {
                 case 2:
-                    Strength += 6;
-                    Hp += 20;
+                    Strength += 5;
+                    Hp += 10;
                     Exp -= 10;
                     break;
-
                 case 3:
-                    Strength += 20;
-                    Hp += 50;
+                    Strength += 15;
+                    Hp += 20;
                     Exp -= 20;
                     break;
-
                 case 4:
                     Strength += 30;
-                    Hp += 80;
+                    Hp += 40;
                     Exp -= 30;
                     break;
-
                 case 5:
                     Strength += 40;
-                    Hp += 100;
+                    Hp += 60;
                     Exp -= 40;
                     break;
-
                 case 6:
                     Strength += 50;
-                    Hp += 120;
+                    Hp += 100;
                     Exp -= 50;
                     break;
-
                 case 7:
                     Strength += 60;
                     Hp += 150;
                     Exp -= 60;
                     break;
-
                 case 8:
                     Strength += 80;
                     Hp += 200;
                     Exp -= 60;
                     break;
-
                 case 9:
                     Strength += 100;
                     Hp += 250;
                     Exp -= 60;
                     break;
-
                 case 10:
                     Strength += 150;
                     break;
-
                 default:
                     break;
             }
         }
-
         public void Attack(Player player)
         {
             var attackDamage = strength - player.Endurance;
@@ -113,7 +102,6 @@ namespace QuestOfTheRing.Creatures
             Console.Write($"The {name} attacked you, dealing {attackDamage} damage");
             player.Hp -= attackDamage;
         }
-
         public bool IsDead(Creature creature)
         {
             if (creature.hp <= 0)
@@ -125,24 +113,20 @@ namespace QuestOfTheRing.Creatures
                 return false;
             }
         }
-
         public Item DropItem()
         {
             Item item = Item.GetRandomItem();
             return item;
         }
-
         public void IsDefeated(Creature creature)
         {
             Console.WriteLine($"You have defeated the {creature.Name}!");
             Console.WriteLine($"You've recieved {creature.Exp} exp and {creature.Gold} gold");
         }
-
         public void GiveExp(Player player)
         {
             player.Exp += exp;
         }
-
         public static void AddCreatures()
         {
             listOfCreatures.Clear();

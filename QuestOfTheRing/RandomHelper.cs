@@ -10,7 +10,6 @@ namespace QuestOfTheRing
             int randomNum = random.Next(num);
             return randomNum;
         }
-
         public static int GetRandomNum(int num1, int num2)
         {
             Random random = new Random();
