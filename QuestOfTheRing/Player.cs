@@ -17,7 +17,7 @@ namespace QuestOfTheRing
 
         public List<Item> collectedItems = new List<Item>();
 
-        public string Name => name;
+        public string Name { get => name; }
         public int Hp { get => hp; set => hp = value; }
         public int Exp { get => exp; set => exp = value; }
         public int MaxExp { get => maxExp; set => maxExp = value; }
