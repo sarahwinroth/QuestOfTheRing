@@ -84,7 +84,7 @@ namespace QuestOfTheRing
                         case 4:
                             Console.WriteLine("Oh, Leaving so soon?");
                             Console.WriteLine("You are leaving Middle-Earth in great danger..");
-                            keepPlaying = false;
+                            Environment.Exit(0);
                             break;
                         default:
                             Console.WriteLine("Wrong input in main menu, please try again!");
